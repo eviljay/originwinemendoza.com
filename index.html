@@ -1,0 +1,445 @@
+
+
+
+<html>
+<head>
+<meta charset="UTF-8" >
+
+	<title>Origin Wine Mendoza | Origin Wine</title>
+	<meta name="description" content="">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover, minimal-ui" >
+
+	<script src='https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js'></script>
+<script src='//code.jquery.com/jquery-migrate-1.2.1.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.min.js'></script>
+<script src='https://kit.fontawesome.com/71643cace6.js'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js'></script>
+<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'/>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap'/>
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script><link rel='stylesheet' type='text/css' href='/assets/styles.css?1649416640'>
+<script src='/assets/js/bb-require-consent.js?1600090337'></script>
+<script src='/assets/js/app.js?1603300488'></script>
+<script src='/assets/js/garlic.min.js?1606231941'></script>
+<script src='/sled/includes/frontend.js?1624461028'></script>
+<link rel='stylesheet' type='text/css' href='/sled/parts/content/style.css?1614862050'>
+<link rel='stylesheet' type='text/css' href='/sled/parts/gallery/style.css?1612807427'>
+<script> var sledPartsObj = [];</script>
+<script> sledPartsObj['checkout'] = {init: function($el) {$el = $('#checkout-form');
+
+$("#checkout-form").validate({
+	submitHandler: function(form) {
+		//form.submit();
+	}
+});
+
+$('.select-field', $el).change(function(){
+	console.log('here');
+	$this = $(this);
+	window.location = "?action=change-quantity&product-id=" + $this.data("product-id") + "&option=" + $this.data("option") + "&quantity=" + $this.val();
+});
+
+
+$('input[name=email]', $el).change(function(){
+	UpdateCheckoutUI()
+});
+
+
+UpdateCheckoutUI();
+
+$("#billing-toggle", $el).change(checkBillingSameAsShipping);
+setInterval(checkBillingSameAsShipping, 500);
+
+function checkBillingSameAsShipping()
+{
+	if( $('#billing-toggle:checked').length > 0 ) $(".billingaddressform").hide();
+	else $(".billingaddressform").show();
+}
+
+	
+function UpdateCheckoutUI()
+{
+	$payButton = $(".pay-btn");
+	$payButton.empty();
+	
+	var $script = $("<script></script");
+	$script.attr("src", $payButton.attr("src"));
+	$script.attr("class", "stripe-button");
+	$script.attr("data-currency", $payButton.attr("data-currency"));
+	$script.attr("data-key", $payButton.attr("data-key"));
+	$script.attr("data-amount", $payButton.attr("data-amount"));
+	$script.attr("data-name", $payButton.attr("data-name"));
+	$script.attr("data-email", $('input[name=email]', $el).val());
+	$script.attr("data-description", $payButton.attr("data-description"));
+	$script.attr("data-image", $payButton.attr("data-image"));
+	$script.attr("data-locale", $payButton.attr("data-locale"));
+	$script.attr("data-zip-code", $payButton.attr("data-zip-code"));
+	$script.attr("data-currency", $payButton.attr("data-currency"));
+	$script.attr("data-amount", $payButton.attr("data-amount"));
+	
+	$payButton.append($script);
+}}};</script>
+<script> sledPartsObj['content'] = {
+	init: function(){
+		$(function(){
+			$(window).scroll(function(){
+				var scroll = $(window).scrollTop();
+				$('.edit-content-btn').css('top', scroll / 0.7 - 700 );
+				$('.edit-content-btn').css('left', -100 );
+			});
+
+			// make content height the right size when scaled down
+			setInterval(function(){
+				$(".sled-part[data-part='content']").each(function(){
+					var $content = $(this);
+					if($content.hasClass('editable'))
+					{
+						$content.css('margin-bottom', '-' + $content.height() * 0.3 + 'px');
+					} 
+					else
+					{
+						$content.css('margin-bottom', '0px');
+					}
+				});
+			}, 100);
+		});
+	}
+};</script>
+<script> sledPartsObj['gallery'] = { init: function($el) {
+	
+	var autoplay = false;
+	
+	if($('.swiper-container', $el).data('autoplay'))
+	{
+		autoplay = { delay: 2000 }
+	}
+	
+	new Swiper('.swiper-container', {
+		// Optional parameters
+		direction: 'horizontal',
+		loop: true,
+		autoHeight: false,
+		autoplay: autoplay,
+		// Disable preloading of all images
+		preloadImages: true,
+		// Enable lazy loading
+		lazy: {
+			loadPrevNext: true,
+			loadPrevNextAmount: 1
+		},
+		
+
+		// If we need pagination
+		pagination: {
+			el: '.swiper-pagination',
+		},
+
+		// Navigation arrows
+		navigation: {
+			nextEl: '.swiper-button-next',
+			prevEl: '.swiper-button-prev',
+		},
+
+		// And if we need scrollbar
+		scrollbar: {
+			el: '.swiper-scrollbar',
+		},
+
+		keyboard: {
+			enabled: true,
+			onlyInViewport: true,
+		}
+	})
+}};</script>
+		
+	<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+	<link rel="manifest" href="/favicon/site.webmanifest">
+	<link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5">
+	<link rel="shortcut icon" href="/favicon/favicon.ico">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="msapplication-config" content="/favicon/browserconfig.xml">
+	<meta name="theme-color" content="#ffffff">
+	
+	
+	<!--<script src="https://www.google.com/recaptcha/api.js?render="></script>-->
+		
+
+	<style>
+	:root {
+		--region-color: ;
+	}	
+	</style>
+	
+	<!--<script>
+		var clientRecaptchaKey = '';
+	</script>-->
+
+</head>
+
+<body class="regions-home-page">
+	
+<nav class="navbar navbar-expand-lg navbar-light bg-transparent fixed-top p-4  container" style="position: absolute;">
+  <a class="navbar-brand" href="https://origin.wine/">
+	   <img src="/image/large/region-logo.svg" style="filter: none;" />
+  </a>
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#footer"><span class='sled-part editable-idle' id='part-1' data-id='contact us' data-partid='contact us' data-part='label' >Contact Us</span></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<style>
+:root {
+	--region-color: #74abde;
+}	
+</style>
+
+<section class="regions-hero-section content d-flex align-items-center">
+	<div class="container mt-5 pt-5">
+		<div class="row">
+			<div class="col-md-6 col-sm-12 flex-column d-flex left-column">
+				<!--<hr class="white-rule">-->
+				<h1>Origin Wine Mendoza</h1>
+				<!--<a class="reset d-flex align-items-center header-cta">
+					<h4 class="mb-0 font-weight-light">Origin Wines</h4> 
+					<img src="/assets/arrow-nocircle-origin.svg" alt="" class="list-arrow list-arrow--main-page ml-3" /> 
+				</a>-->
+				
+			</div>
+			<div class="col-md-6 col-sm-12 font-weight-light">
+								</div>
+			
+		</div>
+		<img class="full-width regions-banner-illustration" src="/image/large/arg-mountain.svg" />
+	</div>
+</section>
+
+
+<div class="section brands content container">
+	<div class="row">
+		<div class="col">
+			<h3><img src="/image/large/9913897mendoza_21484_18-05-18.jpg" alt="" width="191" height="191" /></h3>
+<h2><span style="font-size: large;">Our Facilities</span></h2>
+<ul>
+<li>Wine Storage capacity for 4.2 million litres</li>
+<li>Long term supply contracts with strict viticultural specifications</li>
+<li>500,000 (9l) cases annually</li>
+<li>Bottling line with 30,000 bottles/day capacity</li>
+</ul>
+<h2><span style="font-size: large;">Our Services</span></h2>
+<ul>
+<li>Organic product development</li>
+<li>Unrivalled expertise in managing high level customer own label contracts</li>
+<li>Own label brand development</li>
+<li>Bulk wine supply</li>
+<li>Wine analysis</li>
+<li>Wine treatment and blending</li>
+<li>Complete range of packaging, labelling and closure options</li>
+</ul>		</div>
+		<div class="col-md-7">
+			<h3 class="mb-5" style="color: var(--region-color);"><span class='sled-part editable-idle' id='part-2' data-id='brands include' data-partid='brands include' data-part='label' >Brands include</span></h3>
+			<ul class="brand__selector ">
+				
+								
+					<div class="brand__selector__logo active" data-target="#brand__info__slider" data-slide-to="0" ><img src="/image/smallthumb/mendoza_21484_18-05-18.jpg" alt=""></div>
+					
+								
+					<div class="brand__selector__logo " data-target="#brand__info__slider" data-slide-to="1" ><img src="/image/smallthumb/LOGOS-PROD-MV-06.jpg" alt=""></div>
+					
+								
+					<div class="brand__selector__logo " data-target="#brand__info__slider" data-slide-to="2" ><img src="/image/smallthumb/LOGOS-PROD-MV-05.jpg" alt=""></div>
+					
+								
+					<div class="brand__selector__logo " data-target="#brand__info__slider" data-slide-to="3" ><img src="/image/smallthumb/LOGOS-PROD-MV-03.jpg" alt=""></div>
+					
+								
+			</ul>
+			
+			<div id="brand__info__slider" class="carousel slide">
+			  <div class="carousel-inner">
+			    
+				    
+				    
+				    						<div class="carousel-item active">
+							<div class=" row brand__info brand__info--0">
+								<div class="col brand__info__include">
+									<h3 class="brand__info__heading "><span class='sled-part editable-idle' id='part-3' data-id='wines varietals' data-partid='wines varietals' data-part='label' >WINES / VARIETALS</span></h3>
+																	</div>
+								<div class="col brand__info__packaging">
+									<h3 class="brand__info__heading "><span class='sled-part editable-idle' id='part-4' data-id='packaging options' data-partid='packaging options' data-part='label' >PACKAGING OPTIONS</span></h3>
+																	</div>
+							</div>
+						</div>
+						
+											<div class="carousel-item ">
+							<div class=" row brand__info brand__info--1">
+								<div class="col brand__info__include">
+									<h3 class="brand__info__heading "><span class='sled-part editable-idle' id='part-5' data-id='wines varietals' data-partid='wines varietals' data-part='label' >WINES / VARIETALS</span></h3>
+									<p><span style="font-size: small;"><a href="http://origin.wine/wine/origin-wine-mendoza/richard-and-bernard-malbec">Richard and Bernard Malbec</a></span></p>								</div>
+								<div class="col brand__info__packaging">
+									<h3 class="brand__info__heading "><span class='sled-part editable-idle' id='part-6' data-id='packaging options' data-partid='packaging options' data-part='label' >PACKAGING OPTIONS</span></h3>
+									<p><span style="font-size: small;">Glass</span></p>
+<p><span style="font-size: small;">750ml</span></p>								</div>
+							</div>
+						</div>
+						
+											<div class="carousel-item ">
+							<div class=" row brand__info brand__info--2">
+								<div class="col brand__info__include">
+									<h3 class="brand__info__heading "><span class='sled-part editable-idle' id='part-7' data-id='wines varietals' data-partid='wines varietals' data-part='label' >WINES / VARIETALS</span></h3>
+																	</div>
+								<div class="col brand__info__packaging">
+									<h3 class="brand__info__heading "><span class='sled-part editable-idle' id='part-8' data-id='packaging options' data-partid='packaging options' data-part='label' >PACKAGING OPTIONS</span></h3>
+									<p><span style="font-size: small;">Glass</span></p>
+<p><span style="font-size: small;">750ml</span></p>
+<p>&nbsp;</p>								</div>
+							</div>
+						</div>
+						
+											<div class="carousel-item ">
+							<div class=" row brand__info brand__info--3">
+								<div class="col brand__info__include">
+									<h3 class="brand__info__heading "><span class='sled-part editable-idle' id='part-9' data-id='wines varietals' data-partid='wines varietals' data-part='label' >WINES / VARIETALS</span></h3>
+																	</div>
+								<div class="col brand__info__packaging">
+									<h3 class="brand__info__heading "><span class='sled-part editable-idle' id='part-10' data-id='packaging options' data-partid='packaging options' data-part='label' >PACKAGING OPTIONS</span></h3>
+									<p><span style="font-size: small;">Glass</span></p>
+<p><span style="font-size: small;">750ml</span></p>
+<p><span style="font-size: small;">187 ml</span></p>
+<p>&nbsp;</p>								</div>
+							</div>
+						</div>
+						
+									
+				    
+			      
+			    
+			    </div>
+			  </div>
+			</div>			
+		</div>
+	</div>
+</div>
+
+<div class="social-proof d-flex container justify-content-around mb-5">
+	
+			
+		<div class="social-proof__logos"><img src="/image/smallthumb/brcfood.png" alt="" class="social-proof__logos-item"></div>
+		
+			
+		<div class="social-proof__logos"><img src="/image/smallthumb/organicoargentina.png" alt="" class="social-proof__logos-item"></div>
+		
+		
+</div>
+
+<a name="footer"></a>
+<section class="contact contact--regions content">
+	<div class="container">
+		
+	
+		<div class="row">
+			<div class="col-sm-12 col-md text-center text-md-left mb-5 mb-md">
+				<h4 class="contact__title"><span class='sled-part editable-idle' id='part-11' data-id='contact us' data-partid='contact us' data-part='label' >Contact Us</span></h4>
+				<div class="contact__address">
+					<p><span style="font-size: small;">Carril Rodriguez Pe&ntilde;a 2147</span></p>
+<p><span style="font-size: small;">Godoy Cruz (5501)&nbsp;</span></p>
+<p><span style="font-size: small;">Mendoza</span></p>
+<p><span style="font-size: small;">&nbsp;</span></p>				</div>
+				<div class="contact__details">
+					<p class="contact__details--item contact__details--phone contact__details--accents">
+						<img src="/assets/phone-icon.svg" alt="" class="icon phone-icon">
+						<a href="tel:+54 9 261 4326900" class="contact__details--accents">+54 9 261 4326900</a>
+						
+					</p>
+					<p class="contact__details--item contact__details--email contact__details--accents">
+						<img src="/assets/email-icon.svg" alt="" class="icon email-icon">
+						<a class="contact__details--accents" href="mailto:info@mendozavineyards.com">info@mendozavineyards.com</a>
+					</p>
+				</div>
+				<div class="social-media-links">
+					<p>
+													<a href="https://www.instagram.com/mendozavineyards/"><i class="fab fa-instagram social-media-icon"></i></a>
+													<a href="https://www.facebook.com/mendozavineyardssa/"><i class="fab fa-facebook-square social-media-icon"></i></a>
+											</p>
+				</div>
+				
+								
+	
+			</div>
+			<div class="col-sm-12 col-md ">
+				<form class="contact__form ajax" action="honpatt/poster/contact-form-origin-wine-mendoza" method="post">
+					<input type="hidden" class="form-control" value="origin-wine-mendoza" name="source">
+					<input type="hidden" class="form-control" value="09/06/2023" name="date">
+					<input type="hidden" class="form-control" name="pagetime">
+				  <div class="form-row">
+				    <div class="col">
+				      <input type="text" class="form-control" placeholder="Name" name="name">
+				    </div>
+				    <div class="col">
+				      <input type="text" class="form-control" placeholder="Surname" name="surname">
+				    </div>
+				  </div>
+				  <div class="form-row">
+				    <div class="col">
+				      <input type="email" class="form-control" placeholder="Email" name="email">
+				    </div>
+				    <div class="col">
+				      <input type="text" class="form-control" placeholder="Telephone" name="telephone">
+				    </div>
+				    <div class="col honiepatt">
+				      <input type="text" class="form-control" placeholder="Url" name="url" autocomplete="new-password">
+				    </div>
+				  </div>
+				  <div class="form-row">
+				    <div class="col">
+				      <textarea class="form-control form-control--textarea" placeholder="Message" name="message"></textarea>
+				    </div>
+				    
+				  </div>
+				  <div class="form-row">
+				    <div class="col d-flex justify-content-end">
+				      <a type="submit">
+					      <img src="/assets/arroworigin.svg" class="arrow"/>
+					      <span> <span class='sled-part editable-idle' id='part-12' data-id='send message' data-partid='send message' data-part='label' >Send Message</span></span>
+				       </a>
+				    </div>  
+				  </div>
+				</form
+			</div>
+		</div>
+		
+		
+	
+	
+	</div>
+	
+	<div class="container">
+		<div class="row lower-footer">
+			<div class="col-sm-12 col-md footer-column">
+				<p>&copy;2023 ORIGIN WINE</p>
+			</div>
+		</div>
+	</div>
+	
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+<script src="/assets/js/app.js?"></script>
+
+<script> console.log("google")</script>
+</body>
+</html>
+
+
